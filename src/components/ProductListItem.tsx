@@ -7,7 +7,7 @@ type ProductListItemProps = {
   product: Product;
 };
 
-const defaultPizzaImg =
+export const defaultPizzaImg =
   "https://www.notjustdev-dummy.s3.us-east-2.amaonaws.com/food/default.png";
 
 const ProductListItem = ({ product }: ProductListItemProps) => {

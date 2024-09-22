@@ -27,7 +27,6 @@ export default function TabLayout() {
         headerShown: useClientOnlyValue(false, true),
       }}
     >
-      //* Hides the index redirect tab from the menu
       <Tabs.Screen name="index" options={{ href: null }} />
       <Tabs.Screen
         name="menu" //* Name of the root file or dir for this layout
