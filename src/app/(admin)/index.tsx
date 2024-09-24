@@ -2,5 +2,5 @@ import { Redirect } from "expo-router";
 
 //? Sets up the default home
 export default function TabIndex() {
-  return <Redirect href={"/menu/"} />;
+  return <Redirect href={"/(admin)/menu"} />;
 }
