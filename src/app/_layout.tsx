@@ -59,6 +59,7 @@ function RootLayoutNav() {
           {/* headerShown false removes the filename from header */}
           <Stack.Screen name="(user)" options={{ headerShown: false }} />
           <Stack.Screen name="(admin)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="cart" options={{ presentation: "modal" }} />
         </Stack>
       </CartProvider>
