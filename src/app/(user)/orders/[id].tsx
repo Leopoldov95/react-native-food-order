@@ -1,4 +1,4 @@
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { View, StyleSheet, FlatList } from "react-native";
 import orders from "@/assets/data/orders";
 import OrderListItem from "@/src/components/OrderListItem";
@@ -7,12 +7,7 @@ import OrderItemListItem from "@/src/components/OrderItemListItem";
 const OrderDetailsScreen = () => {
   const { id } = useLocalSearchParams();
 
-  const router = useRouter();
-
-  const order = orders.find((p) => p.id.toString() === id);
-
-  console.log("prder");
-  console.log(order);
+  const order = orders.find((o) => o.id.toString() === id);
 
   if (!order) {
     return <View>Order Not Found!</View>;
@@ -20,9 +15,9 @@ const OrderDetailsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: `Order # ${order.id}` }} />
+      <Stack.Screen options={{ title: `Order # ${id}` }} />
       {/* render the order card */}
-      <OrderListItem order={order} />
+      {/* <OrderListItem order={order} /> */}
 
       {/* render the order list */}
       <FlatList
@@ -32,6 +27,7 @@ const OrderDetailsScreen = () => {
           gap: 10, // horizontal spacing
           padding: 0, // edge padding
         }}
+        ListHeaderComponent={<OrderListItem order={order} />}
       />
     </View>
   );

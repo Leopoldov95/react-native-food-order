@@ -30,7 +30,6 @@ const CartProvider = ({ children }: PropsWithChildren) => {
       return; //  stop the curent execution
     }
 
-    //console.log(product);
     const newCartItem: CartItem = {
       id: randomUUID(), // generate the id
       product,

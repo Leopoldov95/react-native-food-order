@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   orderDetails: {
     flex: 1,
     flexDirection: "row",
-    gap: 15,
+    gap: 10,
   },
   size: {},
 });
