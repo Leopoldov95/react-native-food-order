@@ -3,12 +3,29 @@ import React, { useState } from "react";
 import Button from "@/src/components/Button";
 import Colors from "@/src/constants/Colors";
 import { Link, Stack } from "expo-router";
+import { supabase } from "@/src/lib/supabase";
 
 export default function CreateProductScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState("");
+
+  async function signUpWithEmail() {
+    setLoading(true);
+    if (!validateInput) {
+      return;
+    }
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) Alert.alert(error.message);
+    setLoading(false);
+  }
 
   //   const resetFields = () => {
   //     setName("");
@@ -36,13 +53,6 @@ export default function CreateProductScreen() {
     return true;
   };
 
-  const onSubmit = () => {
-    if (!validateInput()) {
-      return; // stop the execution
-    }
-    console.warn("SIGN UP");
-  };
-
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Sign Up" }} />
@@ -50,6 +60,7 @@ export default function CreateProductScreen() {
       <Text style={styles.label}>Email</Text>
       <TextInput
         value={email}
+        autoCapitalize="none"
         onChangeText={setEmail}
         placeholder="john@gmail.com"
         style={styles.input}
@@ -57,6 +68,7 @@ export default function CreateProductScreen() {
 
       <Text style={styles.label}>Password</Text>
       <TextInput
+        autoCapitalize="none"
         value={password}
         onChangeText={setPassword}
         placeholder=""
@@ -65,7 +77,11 @@ export default function CreateProductScreen() {
       />
 
       <Text style={styles.error}>{errors}</Text>
-      <Button onPress={onSubmit} text={"Sign In"} />
+      <Button
+        disabled={loading}
+        onPress={signUpWithEmail}
+        text={loading ? "Creating account..." : "Create Account"}
+      />
       <Link href="/(auth)/sign-in" style={styles.link}>
         <Text style={styles.linkText}>Sign In</Text>
       </Link>
